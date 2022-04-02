@@ -5,4 +5,12 @@
     <string name="loading">Loading...</string>
     <string name="service_error_message">Teknik hata oluştu, tekrar deneyiniz</string>
     <string name="connection_error_message">İnternet bağlantısı bulunamadı, lütfen bağlantınızı kontrol ediniz</string>
+    <string name="bank_name_title">Banka İsmi:</string>
+    <string name="bank_name">Banka İsmi:</string>
+    <string name="bank_type">Banka Tipi:</string>
+    <string name="city">İl:</string>
+    <string name="district">İlçe:</string>
+    <string name="address">Adres:</string>
+    <string name="navigate_road">Yol Tarifi</string>
+    <string name="search_hint">Şube Ara</string>
 </resources>

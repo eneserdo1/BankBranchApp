@@ -18,7 +18,7 @@
             android:id="@+id/bankNameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Banka İsmi:"
+            android:text="@string/bank_name_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toEndOf="@+id/bankNameTitle"
             app:layout_constraintTop_toTopOf="parent"
             android:textAlignment="textStart"
-            tools:text="Banka İsmi:" />
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <View
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             android:id="@+id/bankTypeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Banka Tipi:"
+            android:text="@string/bank_type"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +87,7 @@
             android:id="@+id/bankCityTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="İl:"
+            android:text="@string/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -122,7 +122,7 @@
             android:id="@+id/bankDistrictTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="İlçe:"
+            android:text="@string/district"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -157,7 +157,7 @@
             android:id="@+id/bankAddressTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adres:"
+            android:text="@string/address"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -194,7 +194,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yol Tarifi"
+            android:text="@string/navigate_road"
             android:drawableStart="@drawable/ic_baseline_navigation_24"
             android:drawablePadding="4dp"
             android:textStyle="bold"
