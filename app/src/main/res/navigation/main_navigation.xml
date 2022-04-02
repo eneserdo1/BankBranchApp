@@ -10,21 +10,23 @@
         android:name="com.app.bankbranchapp.screens.list.fragments.BankListFragment"
         android:label="fragment_bank_list"
         tools:layout="@layout/fragment_bank_list"
-        app:enterAnim="@anim/slide_in_left"
-        app:exitAnim="@anim/slide_out_left"
-        app:popEnterAnim="@anim/slide_in_right"
-        app:popExitAnim="@anim/slide_out_right"
-        />
+
+        >
+        <action
+            android:id="@+id/action_bankListFragment_to_bankDetailFragment"
+            app:destination="@id/bankDetailFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/bankDetailFragment"
         android:name="com.app.bankbranchapp.screens.detail.fragments.BankDetailFragment"
         android:label="fragment_bank_detail"
         tools:layout="@layout/fragment_bank_detail"
-        app:enterAnim="@anim/slide_in_left"
-        app:exitAnim="@anim/slide_out_left"
-        app:popEnterAnim="@anim/slide_in_right"
-        app:popExitAnim="@anim/slide_out_right"
         />
 
 </navigation>

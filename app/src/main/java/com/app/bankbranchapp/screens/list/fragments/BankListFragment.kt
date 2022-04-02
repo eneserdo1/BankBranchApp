@@ -77,7 +77,7 @@ class BankListFragment : BaseFragment<FragmentBankListBinding>(FragmentBankListB
     private fun navigateDetail(item: BankListResponseItem) {
         val bundle = Bundle()
         bundle.putParcelable(SELECTED_BANK_BRANCH,item)
-        findNavController().navigate(R.id.bankDetailFragment,bundle)
+        findNavController().navigate(R.id.action_bankListFragment_to_bankDetailFragment,bundle)
     }
 
     private fun setObservers() {
