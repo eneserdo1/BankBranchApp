@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.screens.list.fragments
+package com.app.bankbranchapp.screens.detail.fragments
 
 import android.os.Bundle
 import android.view.View
