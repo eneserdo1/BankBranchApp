@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bankbranchapp.databinding.ItemBranchBinding
 import com.app.bankbranchapp.presentation.models.BankListResponseItem
+import com.app.bankbranchapp.screens.list.interfaces.BranchSelectedListener
 
-class BankBranchRecyclerAdapter : ListAdapter<BankListResponseItem,BankBranchRecyclerAdapter.BranchViewHolder>(BranchDiffCallback) {
+class BankBranchRecyclerAdapter(val branchSelectListener:BranchSelectedListener) : ListAdapter<BankListResponseItem,BankBranchRecyclerAdapter.BranchViewHolder>(BranchDiffCallback) {
 
     private lateinit var binding : ItemBranchBinding
 
@@ -28,11 +29,14 @@ class BankBranchRecyclerAdapter : ListAdapter<BankListResponseItem,BankBranchRec
         }
     }
 
-    class BranchViewHolder(private val binding: ItemBranchBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class BranchViewHolder(private val binding: ItemBranchBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data:BankListResponseItem) = with(itemView){
             binding.apply {
                 bankBranchName.text = data.dc_BANKA_SUBE
                 bankBranchType.text = data.dc_BANKA_TIPI
+            }
+            itemView.setOnClickListener {
+                branchSelectListener.selectedBranch(data)
             }
         }
     }

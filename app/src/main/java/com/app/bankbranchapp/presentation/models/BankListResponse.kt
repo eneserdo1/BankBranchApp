@@ -1,9 +1,12 @@
 package com.app.bankbranchapp.presentation.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 class BankListResponse : ArrayList<BankListResponseItem>()
 
+@Parcelize
 data class BankListResponseItem(
     @field:SerializedName("ID") val iD: Int = 0,
     @field:SerializedName("dc_ADRES") val dc_ADRES: String = "",
@@ -18,4 +21,4 @@ data class BankListResponseItem(
     @field:SerializedName("dc_ON_OFF_SITE") val dc_ON_OFF_SITE: String= "",
     @field:SerializedName("dc_POSTA_KODU") val dc_POSTA_KODU: String= "",
     @field:SerializedName("dc_SEHIR")  val dc_SEHIR: String= ""
-)
+):Parcelable

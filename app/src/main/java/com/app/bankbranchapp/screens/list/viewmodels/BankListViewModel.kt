@@ -1,5 +1,6 @@
 package com.app.bankbranchapp.screens.list.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,15 +16,22 @@ import javax.inject.Inject
 class BankListViewModel @Inject constructor(private val repository: Repository) : ViewModel(){
 
     private var _bankBranchList = MutableLiveData<Resource<BankListResponse>>()
-    var bankBranchList: MutableLiveData<Resource<BankListResponse>> = _bankBranchList
 
-    fun fetchAllBankBranchList(){
+    init {
+        fetchAllBankBranchList()
+    }
+
+    private fun fetchAllBankBranchList(){
         viewModelScope.launch {
             repository.getAllBankBranchList().onStart {
-                bankBranchList.postValue(Resource.loading())
+                _bankBranchList.postValue(Resource.loading())
             }.collect{
-                bankBranchList.postValue(it)
+                _bankBranchList.postValue(it)
             }
         }
+    }
+
+    fun fetchBankBranchList() : LiveData<Resource<BankListResponse>>{
+        return _bankBranchList
     }
 }
