@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "311508450881",
+    "project_id": "bankbranchapp",
+    "storage_bucket": "bankbranchapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311508450881:android:f1c3e1173879196792d0c0",
+        "android_client_info": {
+          "package_name": "com.app.bankbranchapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311508450881-7j64shda5biguc69lddd32eoc5ug8v1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8duf6o_9tupN93ogKCADJfXXQEALLAn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311508450881-7j64shda5biguc69lddd32eoc5ug8v1l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

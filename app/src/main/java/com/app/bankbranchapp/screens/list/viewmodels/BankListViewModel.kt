@@ -17,6 +17,9 @@ class BankListViewModel @Inject constructor(private val repository: Repository) 
 
     private var _bankBranchList = MutableLiveData<Resource<BankListResponse>>()
 
+    private var _filterState = MutableLiveData<Boolean>()
+    var filterState = _filterState
+
     init {
         fetchAllBankBranchList()
     }
@@ -34,4 +37,8 @@ class BankListViewModel @Inject constructor(private val repository: Repository) 
     fun fetchBankBranchList() : LiveData<Resource<BankListResponse>>{
         return _bankBranchList
     }
+
+
+    fun setFilterState(state:Boolean = false) = filterState.postValue(state)
+
 }

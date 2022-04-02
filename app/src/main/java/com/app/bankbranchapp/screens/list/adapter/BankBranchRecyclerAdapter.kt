@@ -2,6 +2,8 @@ package com.app.bankbranchapp.screens.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,9 +11,11 @@ import com.app.bankbranchapp.databinding.ItemBranchBinding
 import com.app.bankbranchapp.presentation.models.BankListResponseItem
 import com.app.bankbranchapp.screens.list.interfaces.BranchSelectedListener
 
-class BankBranchRecyclerAdapter(val branchSelectListener:BranchSelectedListener) : ListAdapter<BankListResponseItem,BankBranchRecyclerAdapter.BranchViewHolder>(BranchDiffCallback) {
+class BankBranchRecyclerAdapter(val branchSelectListener:BranchSelectedListener) : ListAdapter<BankListResponseItem,BankBranchRecyclerAdapter.BranchViewHolder>(BranchDiffCallback),Filterable {
 
     private lateinit var binding : ItemBranchBinding
+
+    private var list : ArrayList<BankListResponseItem> = arrayListOf()
 
     object BranchDiffCallback : DiffUtil.ItemCallback<BankListResponseItem>(){
         override fun areItemsTheSame(
@@ -41,6 +45,12 @@ class BankBranchRecyclerAdapter(val branchSelectListener:BranchSelectedListener)
         }
     }
 
+
+    fun setData(bankList:List<BankListResponseItem>){
+        this.list = bankList as ArrayList<BankListResponseItem>
+        submitList(bankList)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BranchViewHolder {
         binding = ItemBranchBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return BranchViewHolder(binding)
@@ -50,4 +60,29 @@ class BankBranchRecyclerAdapter(val branchSelectListener:BranchSelectedListener)
         holder.bind(getItem(position))
     }
 
+    override fun getFilter(): Filter {
+        return customFilter
+    }
+
+    private val customFilter = object : Filter() {
+        override fun performFiltering(constraint: CharSequence?): FilterResults {
+            val filteredList = mutableListOf<BankListResponseItem>()
+            if (constraint == null || constraint.isEmpty()) {
+                filteredList.addAll(list)
+            } else {
+                for (item in list) {
+                    if (item.dc_SEHIR.lowercase().startsWith(constraint.toString().lowercase())) {
+                        filteredList.add(item)
+                    }
+                }
+            }
+            val results = FilterResults()
+            results.values = filteredList
+            return results
+        }
+
+        override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
+            submitList(filterResults?.values as MutableList<BankListResponseItem>)
+        }
+    }
 }

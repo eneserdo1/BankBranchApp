@@ -8,10 +8,21 @@
     android:padding="16dp"
     tools:context=".screens.list.fragments.BankListFragment">
 
+    <EditText
+        android:id="@+id/searchEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/searchview_background"
+        android:hint="Ara"
+        android:paddingHorizontal="6dp"
+        />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bankBranchRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginVertical="4dp"
         />
 </androidx.appcompat.widget.LinearLayoutCompat>
