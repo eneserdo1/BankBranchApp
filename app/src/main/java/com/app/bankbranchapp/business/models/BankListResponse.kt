@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.presentation.models
+package com.app.bankbranchapp.business.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

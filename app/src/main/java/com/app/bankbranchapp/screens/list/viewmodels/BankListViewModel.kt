@@ -2,20 +2,22 @@ package com.app.bankbranchapp.screens.list.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.bankbranchapp.business.repositories.Repository
-import com.app.bankbranchapp.common.models.Resource
-import com.app.bankbranchapp.presentation.models.BankListResponse
+import com.app.bankbranchapp.business.models.BankListResponse
+import com.app.bankbranchapp.business.repositories.RepositoryImpl
+import com.app.bankbranchapp.common.models.Status
+import com.app.bankbranchapp.core.viewModel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class BankListViewModel @Inject constructor(private val repository: Repository) : ViewModel(){
+class BankListViewModel @Inject constructor(private val repository: RepositoryImpl) :
+    BaseViewModel() {
 
-    private var _bankBranchList = MutableLiveData<Resource<BankListResponse>>()
+    private var _bankBranchList = MutableLiveData<BankListResponse>()
+    val bankBranchList: LiveData<BankListResponse> get() = _bankBranchList
 
     private var _filterState = MutableLiveData<Boolean>()
     var filterState = _filterState
@@ -24,21 +26,27 @@ class BankListViewModel @Inject constructor(private val repository: Repository) 
         fetchAllBankBranchList()
     }
 
-    private fun fetchAllBankBranchList(){
+    private fun fetchAllBankBranchList() {
         viewModelScope.launch {
-            repository.getAllBankBranchList().onStart {
-                _bankBranchList.postValue(Resource.loading())
-            }.collect{
-                _bankBranchList.postValue(it)
+            repository.getAllBankBranchList().collect {
+                when (it.status) {
+                    Status.ERROR -> {
+                        error.value = it.error?.statusMessage.toString()
+                    }
+                    Status.LOADING -> {
+                        loading.value = true
+                    }
+                    Status.SUCCESS -> {
+                        loading.value = false
+                        it.data?.let { result ->
+                            _bankBranchList.postValue(result)
+                        }
+                    }
+                }
             }
         }
     }
 
-    fun fetchBankBranchList() : LiveData<Resource<BankListResponse>>{
-        return _bankBranchList
-    }
-
-
-    fun setFilterState(state:Boolean = false) = filterState.postValue(state)
+    fun setFilterState(state: Boolean = false) = filterState.postValue(state)
 
 }

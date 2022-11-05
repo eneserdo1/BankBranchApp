@@ -3,6 +3,7 @@ package com.app.bankbranchapp.di
 import com.app.bankbranchapp.business.network.ApiService
 import com.app.bankbranchapp.business.remoteDataSource.RemoteDataSource
 import com.app.bankbranchapp.business.repositories.Repository
+import com.app.bankbranchapp.business.repositories.RepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,6 +27,6 @@ object DataModule {
     fun provideRepository(
         remoteDataSource: RemoteDataSource,
     ): Repository {
-        return Repository(remoteDataSource)
+        return RepositoryImpl(remoteDataSource)
     }
 }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bankbranchapp.databinding.ItemBranchBinding
-import com.app.bankbranchapp.presentation.models.BankListResponseItem
+import com.app.bankbranchapp.business.models.BankListResponseItem
 import com.app.bankbranchapp.screens.list.interfaces.BranchSelectedListener
 
 class BankBranchRecyclerAdapter(val branchSelectListener:BranchSelectedListener) : ListAdapter<BankListResponseItem,BankBranchRecyclerAdapter.BranchViewHolder>(BranchDiffCallback),Filterable {

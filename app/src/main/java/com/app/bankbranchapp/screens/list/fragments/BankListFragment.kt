@@ -7,13 +7,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.app.bankbranchapp.R
+import com.app.bankbranchapp.business.models.BankListResponseItem
 import com.app.bankbranchapp.common.constants.AnalyticsConstants.Companion.BANK_LIST
 import com.app.bankbranchapp.common.constants.AnalyticsConstants.Companion.BANK_LIST_SUCCESS
-import com.app.bankbranchapp.common.models.Status
 import com.app.bankbranchapp.common.utils.isNetworkAvailable
+import com.app.bankbranchapp.core.fragment.BaseFragment
 import com.app.bankbranchapp.databinding.FragmentBankListBinding
-import com.app.bankbranchapp.presentation.fragment.BaseFragment
-import com.app.bankbranchapp.presentation.models.BankListResponseItem
 import com.app.bankbranchapp.screens.list.adapter.BankBranchRecyclerAdapter
 import com.app.bankbranchapp.screens.list.interfaces.BranchSelectedListener
 import com.app.bankbranchapp.screens.list.viewmodels.BankListViewModel
@@ -25,13 +24,13 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class BankListFragment : BaseFragment<FragmentBankListBinding>(FragmentBankListBinding::inflate) {
 
-    private val viewModel : BankListViewModel by viewModels()
+    private val viewModel: BankListViewModel by viewModels()
 
-    private lateinit var bankBranchAdapter : BankBranchRecyclerAdapter
+    private lateinit var bankBranchAdapter: BankBranchRecyclerAdapter
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
-    companion object{
+    companion object {
         const val SELECTED_BANK_BRANCH = "SELECTED_BANK_BRANCH"
     }
 
@@ -47,16 +46,20 @@ class BankListFragment : BaseFragment<FragmentBankListBinding>(FragmentBankListB
 
     private fun setCheckConnectionControl() {
         val isAvailable = isNetworkAvailable(requireContext())
-        if (!isAvailable){
-            Snackbar.make(requireView(),getString(R.string.connection_error_message),Snackbar.LENGTH_LONG).show()
+        if (!isAvailable) {
+            Snackbar.make(
+                requireView(),
+                getString(R.string.connection_error_message),
+                Snackbar.LENGTH_LONG
+            ).show()
         }
     }
 
     private fun setFirebaseAnalytics() {
         val bundle = Bundle()
-        bundle.putBoolean(BANK_LIST_SUCCESS,true)
+        bundle.putBoolean(BANK_LIST_SUCCESS, true)
         firebaseAnalytics = FirebaseAnalytics.getInstance(requireContext())
-        firebaseAnalytics.logEvent(BANK_LIST,bundle)
+        firebaseAnalytics.logEvent(BANK_LIST, bundle)
     }
 
     private fun setSearchListener() {
@@ -66,7 +69,7 @@ class BankListFragment : BaseFragment<FragmentBankListBinding>(FragmentBankListB
     }
 
     private fun setAdapters() {
-        bankBranchAdapter = BankBranchRecyclerAdapter(object : BranchSelectedListener{
+        bankBranchAdapter = BankBranchRecyclerAdapter(object : BranchSelectedListener {
             override fun selectedBranch(item: BankListResponseItem) {
                 navigateDetail(item)
             }
@@ -76,35 +79,37 @@ class BankListFragment : BaseFragment<FragmentBankListBinding>(FragmentBankListB
 
     private fun navigateDetail(item: BankListResponseItem) {
         val bundle = Bundle()
-        bundle.putParcelable(SELECTED_BANK_BRANCH,item)
-        findNavController().navigate(R.id.action_bankListFragment_to_bankDetailFragment,bundle)
+        bundle.putParcelable(SELECTED_BANK_BRANCH, item)
+        findNavController().navigate(R.id.action_bankListFragment_to_bankDetailFragment, bundle)
     }
 
     private fun setObservers() {
         lifecycleScope.launch {
-            viewModel.fetchBankBranchList().observe(viewLifecycleOwner){response->
-                when(response.status){
-                    Status.ERROR->{
-                        Snackbar.make(requireView(),getString(R.string.service_error_message),Snackbar.LENGTH_LONG).show()
-                        dialog.dismiss()
-                    }
-                    Status.LOADING->{
-                        dialog.show()
-                    }
-                    Status.SUCCESS->{
-                        dialog.dismiss()
-                        response.data?.let {
-                            bankBranchAdapter.setData(it)
-                            viewModel.setFilterState(true)
-                        }
-                    }
-                }
+            viewModel.bankBranchList.observe(viewLifecycleOwner) { response ->
+                dialog.dismiss()
+                bankBranchAdapter.setData(response)
+                viewModel.setFilterState(true)
             }
         }
 
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                dialog.show()
+            }
+        }
 
-        viewModel.filterState.observe(viewLifecycleOwner){filterState->
-            if (filterState){
+        viewModel.error.observe(viewLifecycleOwner) {
+            Snackbar.make(
+                requireView(),
+                getString(R.string.service_error_message),
+                Snackbar.LENGTH_LONG
+            ).show()
+            dialog.dismiss()
+        }
+
+
+        viewModel.filterState.observe(viewLifecycleOwner) { filterState ->
+            if (filterState) {
                 setSearchListener()
             }
         }

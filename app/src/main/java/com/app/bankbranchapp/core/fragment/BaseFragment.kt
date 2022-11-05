@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.presentation.fragment
+package com.app.bankbranchapp.core.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

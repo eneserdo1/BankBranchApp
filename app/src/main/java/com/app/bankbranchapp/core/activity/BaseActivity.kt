@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.presentation.actiivity
+package com.app.bankbranchapp.core.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
