@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.screens.list.adapter
+package com.app.bankbranchapp.ui.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bankbranchapp.databinding.ItemBranchBinding
 import com.app.bankbranchapp.business.models.BankListResponseItem
-import com.app.bankbranchapp.screens.list.interfaces.BranchSelectedListener
+import com.app.bankbranchapp.ui.list.interfaces.BranchSelectedListener
 
 class BankBranchRecyclerAdapter(val branchSelectListener:BranchSelectedListener) : ListAdapter<BankListResponseItem,BankBranchRecyclerAdapter.BranchViewHolder>(BranchDiffCallback),Filterable {
 

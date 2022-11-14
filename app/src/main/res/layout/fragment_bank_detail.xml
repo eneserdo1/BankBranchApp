@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingHorizontal="4dp"
-    tools:context=".screens.detail.fragments.BankDetailFragment">
+    tools:context=".ui.detail.fragments.BankDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

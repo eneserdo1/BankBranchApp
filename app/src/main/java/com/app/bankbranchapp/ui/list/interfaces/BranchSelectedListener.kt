@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.screens.list.interfaces
+package com.app.bankbranchapp.ui.list.interfaces
 
 import com.app.bankbranchapp.business.models.BankListResponseItem
 

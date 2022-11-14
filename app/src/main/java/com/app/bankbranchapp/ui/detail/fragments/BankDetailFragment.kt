@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.screens.detail.fragments
+package com.app.bankbranchapp.ui.detail.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import com.app.bankbranchapp.common.utils.viewOnMap
 import com.app.bankbranchapp.databinding.FragmentBankDetailBinding
 import com.app.bankbranchapp.core.fragment.BaseFragment
 import com.app.bankbranchapp.business.models.BankListResponseItem
-import com.app.bankbranchapp.screens.list.fragments.BankListFragment.Companion.SELECTED_BANK_BRANCH
+import com.app.bankbranchapp.ui.list.fragments.BankListFragment.Companion.SELECTED_BANK_BRANCH
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 

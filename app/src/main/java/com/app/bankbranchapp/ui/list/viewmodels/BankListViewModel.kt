@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.screens.list.viewmodels
+package com.app.bankbranchapp.ui.list.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,6 @@ import com.app.bankbranchapp.business.repositories.RepositoryImpl
 import com.app.bankbranchapp.common.models.Status
 import com.app.bankbranchapp.core.viewModel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

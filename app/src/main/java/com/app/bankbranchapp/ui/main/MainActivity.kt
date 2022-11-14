@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.screens.main
+package com.app.bankbranchapp.ui.main
 
 
 import com.app.bankbranchapp.databinding.ActivityMainBinding

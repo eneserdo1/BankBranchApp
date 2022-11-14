@@ -1,4 +1,4 @@
-package com.app.bankbranchapp.screens.list.fragments
+package com.app.bankbranchapp.ui.list.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -13,9 +13,9 @@ import com.app.bankbranchapp.common.constants.AnalyticsConstants.Companion.BANK_
 import com.app.bankbranchapp.common.utils.isNetworkAvailable
 import com.app.bankbranchapp.core.fragment.BaseFragment
 import com.app.bankbranchapp.databinding.FragmentBankListBinding
-import com.app.bankbranchapp.screens.list.adapter.BankBranchRecyclerAdapter
-import com.app.bankbranchapp.screens.list.interfaces.BranchSelectedListener
-import com.app.bankbranchapp.screens.list.viewmodels.BankListViewModel
+import com.app.bankbranchapp.ui.list.adapter.BankBranchRecyclerAdapter
+import com.app.bankbranchapp.ui.list.interfaces.BranchSelectedListener
+import com.app.bankbranchapp.ui.list.viewmodels.BankListViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
@@ -95,6 +95,8 @@ class BankListFragment : BaseFragment<FragmentBankListBinding>(FragmentBankListB
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 dialog.show()
+            } else {
+                dialog.dismiss()
             }
         }
 

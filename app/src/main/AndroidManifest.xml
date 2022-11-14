@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BankBranchApp">
         <activity
-            android:name=".screens.main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan"
             >

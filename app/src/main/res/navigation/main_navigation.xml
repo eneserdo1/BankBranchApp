@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/bankListFragment"
-        android:name="com.app.bankbranchapp.screens.list.fragments.BankListFragment"
+        android:name="com.app.bankbranchapp.ui.list.fragments.BankListFragment"
         android:label="fragment_bank_list"
         tools:layout="@layout/fragment_bank_list"
 
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/bankDetailFragment"
-        android:name="com.app.bankbranchapp.screens.detail.fragments.BankDetailFragment"
+        android:name="com.app.bankbranchapp.ui.detail.fragments.BankDetailFragment"
         android:label="fragment_bank_detail"
         tools:layout="@layout/fragment_bank_detail"
         />
